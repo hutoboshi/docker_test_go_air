@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  go:
+    container_name: go-api-server
+    platform: linux/x86_64
+    hostname: localhost
+    tty: true
+    build:
+      context: .
+      dockerfile: ./docker/go/Dockerfile
+    volumes:
+      - ./back:/go/src/app
