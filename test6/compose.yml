@@ -1,0 +1,50 @@
+services:
+  test6:
+    container_name: test6
+    build:
+      context: ./golang
+      dockerfile: Dockerfile
+    platform: linux/x86_64
+    hostname: localhost
+    tty: true
+    ports:
+      - 8080:8080
+    env_file:
+      - ./mysql/.env
+    depends_on:
+      - db
+    volumes:
+      - type: bind
+        source: ./golang/src
+        target: /go/src
+    networks:
+      - golang_test6_network
+
+  db:
+    container_name: db
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    tty: true
+    platform: linux/x86_64
+    ports:
+      - 3306:3306
+    env_file:
+      - ./mysql/.env
+    volumes:
+      - type: volume
+        source: mysql_test_volume
+        target: /var/lib/mysql
+      - type: bind
+        source: ./mysql/init
+        target: /docker-entrypoint-initdb.d
+    networks:
+      - golang_test6_network
+volumes:
+  mysql_test_volume:
+    name: mysql_test_volume
+
+networks:
+  golang_test6_network:
+    external:
+      true
