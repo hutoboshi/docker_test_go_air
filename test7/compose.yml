@@ -34,7 +34,7 @@ services:
       - ./mysql/.env
     volumes:
       - type: volume
-        source: mysql_test_volume
+        source: mysql_test7_volume
         target: /var/lib/mysql
       - type: bind
         source: ./mysql/init
@@ -43,8 +43,8 @@ services:
       - golang_test7_network
 
 volumes:
-  mysql_test_volume:
-    name: mysql_test_volume
+  mysql_test7_volume:
+    name: mysql_test7_volume
 
 networks:
   golang_test7_network:
