@@ -1,0 +1,7 @@
+services:
+  test9_go:
+    container_name: test9_go
+    build:
+      context: ./golang
+      dockerfile: Dockerfile
+    platform: linux/
