@@ -13,7 +13,7 @@ type User struct {
 }
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello,API!!")
+	fmt.Fprintf(w, "Hello,API!!!")
 }
 
 func userHandler(w http.ResponseWriter, r *http.Request) {
